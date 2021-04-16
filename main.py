@@ -19,7 +19,10 @@ print(len(df_EV['Timestamp']))
 df_EV.set_index('Timestamp', inplace=True)
 
 # 300s stands for 5 min offset, add flag "closed='right' " to get it to do it down instead of up:
-df_EV = df_EV.resample('300s').mean() # 300 seconds = 5 mins
+df_EV = df_EV.resample('60s', label='right',closed='right').mean()
+
+# Reduce to one decimal place:
+df_EV.Power = df_EV.Power.round(2)
 
 print("this is the resampled one")
 print(df_EV)
