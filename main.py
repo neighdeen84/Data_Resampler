@@ -18,8 +18,8 @@ print(len(df_EV['Timestamp']))
 # Set DateTime column as index
 df_EV.set_index('Timestamp', inplace=True)
 
-# 1D stands for 1 day offset
-df_EV = df_EV.resample('300s').mean() # 300 seconds = 5 mins
+# 300s stands for 5 min offset, add flag "closed='right' " to get it to do it down instead of up:
+df_EV = df_EV.resample('3s').mean() # 300 seconds = 5 mins
 
 print("this is the resampled one")
 print(df_EV)
