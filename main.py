@@ -3,8 +3,8 @@ import numpy as np
 import datetime
 
 # Enter in the CSVs you want to process:
-df_EV = pd.read_csv('dryer_profile_611_1.csv', header=None)
-df_2 = pd.read_csv('dryer_profile_611_1.csv', header=None)
+df_EV = pd.read_csv('Dryer_Profile_5_Fifteen_loads_FINAL_GLD.csv', header=0)
+df_2 = pd.read_csv('Dryer_Profile_5_Fifteen_loads_FINAL_GLD.csv', header=0)
 
 
 #### using the good timestamp:
@@ -39,7 +39,13 @@ df_EV = df_EV.groupby(df_EV.index // step).mean()
 #print(len(df_EV))
 
 dfT = pd.concat([df_2, df_EV], axis=1)
-dfT.replace(np.nan, 0, inplace=True)
+#dfT.replace(np.nan, 0, inplace=True)
+
+# Reduce to one decimal place:
+dfT.Power = df_EV.Power.round(2)
+
+# Getting rid of the last NaN value:
+dfT.dropna(inplace= True)
 print(dfT)
 
 
