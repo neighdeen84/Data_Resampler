@@ -3,13 +3,17 @@ import numpy as np
 import datetime
 
 # Enter in the CSVs you want to process:
-df_EV = pd.read_csv('Dryer_Profile_5_Fifteen_loads_FINAL_GLD.csv', header=0)
-df_2 = pd.read_csv('Dryer_Profile_5_Fifteen_loads_FINAL_GLD.csv', header=0)
+# Note: if the CSV has no header use: header = None
+# if it has a header use: header = 0
+df_EV = pd.read_csv('EV1.csv', header=0)
+df_2 = pd.read_csv('EV1.csv', header=0)
 
-
+print(df_2)
 #### using the good timestamp:
 # Give labels & make sure Timestamp type is datetime
 df_2.columns =['Timestamp', 'Power']
+print(df_2)
+
 df_2['Timestamp'] = df_2['Timestamp'].astype('datetime64')
 
 # Set DateTime column as index
@@ -50,4 +54,4 @@ print(dfT)
 
 
 # Printing out sampled CSV with removed headers (col labels) and keeping the index (timestamp col):
-dfT.to_csv('Resampled.csv', header=False, index=False)
+dfT.to_csv('EV1_Resampled.csv', header=False, index=False)
