@@ -1,3 +1,4 @@
+### NOTE: This is for EV profiles specifically, because of the ceiling that gets implemented.
 import pandas as pd
 import numpy as np
 import datetime
@@ -70,6 +71,8 @@ def iter_files(folder_path):
         dfT.dropna(inplace= True)
         #print(dfT)
 
+        # Ceil values less than 5760:
+        dfT['Power'] = np.where( (dfT.Power > 0) & (dfT.Power < 5760) , 5760, dfT.Power)
 
         # Printing out sampled CSV with removed headers (col labels) and keeping the index (timestamp col):
         dfT.to_csv(resampled_dir+'\\EV'+str(i)+'_Resampled.csv', header=False, index=False)
