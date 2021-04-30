@@ -11,6 +11,7 @@ def iter_files(folder_path):
 
     if os.path.isdir(resampled_dir):
         shutil.rmtree(resampled_dir)
+        os.mkdir(resampled_dir)
     else:
         os.mkdir(resampled_dir)
     for filename in os.listdir(folder_path):
@@ -74,6 +75,6 @@ def iter_files(folder_path):
         dfT['Power'] = np.where( (dfT.Power > 0) & (dfT.Power < 5760) , 5760, dfT.Power)
         #final_filename = os.join.path(resampled_dir,filname)
         # Printing out sampled CSV with removed headers (col labels) and keeping the index (timestamp col):
-        dfT.to_csv(resampled_dir+'\\resampled_'+filename, header=False, index=False)
+        dfT.to_csv(resampled_dir+'\\'+filename, header=False, index=False)
         #print('made it here')
 iter_files('D:\\Git Projects\\Data_Resampler\\test\\')
