@@ -1,24 +1,23 @@
 ### NOTE: This is for EV profiles specifically, because of the ceiling that gets implemented.
 import pandas as pd
 import numpy as np
-import datetime
+import shutil
 import os
 
 def iter_files(folder_path):
-    i = 1
     resampled_dir = os.getcwd()+ '\\resampled_data'
     print(resampled_dir)
     os.chdir(folder_path)
 
     if os.path.isdir(resampled_dir):
-        pass
+        shutil.rmtree(resampled_dir)
     else:
         os.mkdir(resampled_dir)
     for filename in os.listdir(folder_path):
         # Enter in the CSVs you want to process:
         # Note: if the CSV has no header use: header = None
         # if it has a header use: header = 0
-        print(os.getcwd())
+        #print(os.getcwd())
         print(filename)
         df_EV = pd.read_csv(filename, header=None)
         df_2 =  pd.read_csv(filename, header=None)
@@ -73,9 +72,8 @@ def iter_files(folder_path):
 
         # Ceil values less than 5760:
         dfT['Power'] = np.where( (dfT.Power > 0) & (dfT.Power < 5760) , 5760, dfT.Power)
-
+        #final_filename = os.join.path(resampled_dir,filname)
         # Printing out sampled CSV with removed headers (col labels) and keeping the index (timestamp col):
-        dfT.to_csv(resampled_dir+'\\EV'+str(i)+'_Resampled.csv', header=False, index=False)
-        print('made it here')
-        i+=1
+        dfT.to_csv(resampled_dir+'\\resampled_'+filename, header=False, index=False)
+        #print('made it here')
 iter_files('D:\\Git Projects\\Data_Resampler\\test\\')
