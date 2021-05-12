@@ -1,4 +1,4 @@
-# Data Resampler
+# Resolution Decreaser
 ### A resolution decreasing program.
 
 
