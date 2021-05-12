@@ -14,13 +14,13 @@ pip install pandas numpy
 
 ### To get the code
 ```
-git clone https://github.com/neighdeen84/Data_Resampler.git
+git clone https://github.com/neighdeen84/Resolution_Decreaser.git
 ```
 
 
 ## Usage
 ```
-cd Data_Resampler
+cd Resolution_Decreaser
 python main.py
 ```
 
