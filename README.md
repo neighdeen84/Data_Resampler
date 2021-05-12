@@ -1,5 +1,5 @@
 # Resolution Decreaser
-### A resolution decreasing program.
+### A resolution-decreasing program.
 
 
 ## Project Description
